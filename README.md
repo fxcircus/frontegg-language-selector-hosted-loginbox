@@ -36,3 +36,11 @@ If you want to test locally and avoid CORS issues, you can run the server on Chr
 This will disable web security in Chrome, allowing local requests to bypass CORS restrictions temporarily.
 
 Use this method for development and testing only. For production, host the server on a publicly accessible domain.
+
+
+### Screenshots
+The login box is displayed in English by default ➜
+![default](/screenshots/screehot_1_english.png)
+
+Switching to Spanish will result in a page refresh and the page will be translated.➜
+![default](/screenshots/screenshot_02_spanish.png)
