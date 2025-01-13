@@ -30,11 +30,13 @@ app.use((req, res, next) => {
 app.get('/overrides', (req, res) => {
   res.send({
     themeV2: {
-      loginBox:{
-        pageFooter: `
+      loginBox: {
+        pageFooter: {
+          type: 'inline',
+          html: `
             <div style="text-align: center; padding: 10px;">
               <label style="display: flex; align-items: center; gap: 8px; padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; background-color: #ffffff; cursor: pointer;">
-                <select style="border: none; font-size: 14px; outline: none;" onchange="(function(selectedValue) {
+                <select id="language-select" style="border: none; font-size: 14px; outline: none;" onchange="(function(selectedValue) {
                   const languageMap = {
                     'en': 'English',
                     'es': 'Spanish',
@@ -53,14 +55,14 @@ app.get('/overrides', (req, res) => {
                   <option value="it">🇮🇹 Italian</option>
                 </select>
               </label>
-              <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                  const savedLanguage = localStorage.getItem('frontegg-language') || 'en';
-                  document.querySelector('select').value = savedLanguage;
-                });
-              </script>
             </div>
           `,
+          scriptTags: [
+            {
+              inlineCode: "setTimeout(() => { const savedLanguage = localStorage.getItem('frontegg-language') || 'en'; document.getElementById('frontegg-login-box-container-default').shadowRoot.querySelector('#language-select').value = savedLanguage; }, 0);"
+            }
+          ]
+        },
       },
     },
     localizations: {
